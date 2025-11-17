@@ -29,7 +29,7 @@ export default defineConfig({
   },
   server: {
     host: '0.0.0.0',
-    port: 5173,
+    port: 4000,
     // 未来对接 NestJS 时取消注释
     proxy: {
       '/api': {
