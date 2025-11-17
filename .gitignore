@@ -1,0 +1,14 @@
+# 全局忽略
+node_modules/
+dist/
+*.log
+.env
+.DS_Store
+
+# 后端
+/backend/.env
+/backend/dist/
+
+# 前端
+/frontend/dist/
+/frontend/.vite/
