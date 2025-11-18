@@ -4,5 +4,5 @@ import { RouterLink, RouterView } from 'vue-router';
 
 <template>
   <RouterView></RouterView>
-  <div>App Page</div>
+  <!-- <div>App Page</div> -->
 </template>
