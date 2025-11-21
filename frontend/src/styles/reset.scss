@@ -1,0 +1,55 @@
+// 全局 CSS 重置（基于现代开发习惯）
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  // 禁止用户缩放（可选，移动端常用）
+  // touch-action: manipulation;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #fff;
+  color: #000;
+  overflow-x: hidden; // 防止意外横向滚动
+}
+
+// 移除链接默认样式（可选）
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+// 图片响应式基础
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+// 表单元素重置（可选但推荐）
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+}

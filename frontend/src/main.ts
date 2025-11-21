@@ -8,6 +8,7 @@ import 'element-plus/dist/index.css';
 
 // 全局注册所有组件（开发阶段用，生产环境需要按需引入）
 import ElementPlus from 'element-plus';
+import '@/styles/main.scss';
 const app = createApp(App);
 
 setupStore(app);
