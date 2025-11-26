@@ -3,14 +3,21 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { Injectable, Inject } from '@nestjs/common';
 import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
 import { Logger } from 'winston';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { User } from './entities/user.entity';
 @Injectable()
 export class UserService {
   constructor(
     @Inject(WINSTON_MODULE_PROVIDER) private readonly logger: Logger,
+    @InjectRepository(User) private userRepository: Repository<User>,
   ) {}
   test() {
     this.logger.info('Fetching all users', { context: 'UserService' });
     return [{ id: 1, name: 'Alice' }];
+  }
+  queryId(id:number){
+     return this.userRepository.findOneBy(1);
   }
   create(createUserDto: CreateUserDto) {
     return 'This action adds a new user';

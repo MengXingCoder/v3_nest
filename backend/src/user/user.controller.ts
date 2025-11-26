@@ -17,16 +17,15 @@ export class UserController {
   @Get()
   findAll() {
     const res = this.userService.test();
-    console.log('res', res, UserController.name);
+    console.log('res', 
+      res, UserController.name);
     return this.userService.test();
   }
-  @Get('error')
-  triggerError() {
-    throw new Error('Test error for logging');
-  }
-  @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
+
+  @Post('query')
+  create(@Body() UpdateUserDto: UpdateUserDto) {
+    const { id } = UpdateUserDto;
+    return this.userService.queryId(id);
   }
 
   @Get(':id')

@@ -47,5 +47,14 @@ export const uploadFile = (file: File) => {
   formData.append('file', file)
   return http.instance.post('/upload', formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
+    // 也可以加其他配置，比如：
+    //  timeout: 60000, // 60秒超时（覆盖全局10秒）
+    // onUploadProgress: (progressEvent) => {
+    //   const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total!);
+    //   console.log('上传进度:', percent + '%');
+    // },
+    
+    // signal: abortController.signal,
+    // headers: { 'X-Custom-Header': 'upload' }
   })
 }

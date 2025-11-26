@@ -18,7 +18,7 @@ import * as path from 'path';
             ? winston.format.json()
             : winston.format.combine(
                 winston.format.timestamp(),
-                nestWinstonModuleUtilities.format.nestLike('MyApp', {
+                nestWinstonModuleUtilities.format.nestLike('Winston Logger', {
                   colors: true,
                   prettyPrint: true,
                 }),
