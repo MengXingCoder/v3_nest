@@ -1,7 +1,6 @@
 {
   "editor.formatOnSave": true,
-  "prettier.vueIndentScriptAndStyle": true,
-  "prettier.bracketSameLine": true,
+ "prettier.bracketSameLine": true,
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },

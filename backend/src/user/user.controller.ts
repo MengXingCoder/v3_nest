@@ -17,8 +17,7 @@ export class UserController {
   @Get()
   findAll() {
     const res = this.userService.test();
-    console.log('res', 
-      res, UserController.name);
+    console.log('res', res, UserController.name);
     return this.userService.test();
   }
 
