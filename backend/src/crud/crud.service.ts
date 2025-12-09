@@ -4,12 +4,18 @@ import { UpdateCrudDto } from './dto/update-crud.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Test } from './entities/crud.entity';
+import { getUserDto } from './dto/getUser.dto';
 @Injectable()
 export class CrudService {
     constructor(@InjectRepository(Test) private crudRepository: Repository<Test>) { }
-    //查询全部用户
-    async findUser() {
-        const res = await this.crudRepository.find()
+    //查询全部用户 分页
+    async findUser(query: getUserDto) {
+        const { limit, page } = query
+        const take = limit || 10 //一般为10条一页
+        const res = await this.crudRepository.find({
+            take,
+            skip: (page - 1) * take, //跳转的页码
+        })
         console.log('crud', res)
         return res
     }

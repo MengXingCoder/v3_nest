@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, ParseIntPipe } from '@nestjs/common';
 import { CrudService } from './crud.service';
 import { CreateCrudDto } from './dto/create-crud.dto';
 import { UpdateCrudDto } from './dto/update-crud.dto';
+import {type  getUserDto } from './dto/getUser.dto';
 
 @Controller('crud')
 export class CrudController {
@@ -9,8 +10,8 @@ export class CrudController {
 
     //查询所有用户
     @Get()
-    findUser() {
-        return this.crudService.findUser();
+    findUser(@Query() query: getUserDto) {
+        return this.crudService.findUser(query);
     }
     //查询指定用户
     @Get('/queryId/:id')
