@@ -3,8 +3,9 @@ import { AppConfigModule } from 'src/config/config.module'; //导入配置模块
 import { DatabaseModule } from 'src/databases/database.module'; //导入数据库模块
 import { LoggerModule } from './logger/logger.module';
 import { UserModule } from './user/user.module';
+import { CrudModule } from './crud/crud.module';
 @Module({
-  imports: [AppConfigModule, DatabaseModule, LoggerModule, UserModule],
+  imports: [AppConfigModule, DatabaseModule, LoggerModule, UserModule, CrudModule],
   controllers: [],
   providers: [],
 })
