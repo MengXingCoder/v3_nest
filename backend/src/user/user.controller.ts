@@ -21,10 +21,10 @@ export class UserController {
         console.log('res', res);
         return res
     }
-    @Post('query')
-    create(@Body() UpdateUserDto: UpdateUserDto) {
-        const { id } = UpdateUserDto;
-        return this.userService.queryId(id);
+    @Post('create')
+    create(@Body() CreateUserDto: CreateUserDto) {
+        
+        return this.userService.create(CreateUserDto);
     }
 
     @Get(':id')

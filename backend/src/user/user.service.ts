@@ -6,7 +6,6 @@ import { Logger } from 'winston';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
-import { profile } from 'console';
 @Injectable()
 export class UserService {
     constructor(
@@ -63,9 +62,7 @@ export class UserService {
         })
         return res
     }
-    queryId(id: number) {
-        return this.userRepository.findOneBy(1);
-    }
+
     create(createUserDto: CreateUserDto) {
         return 'This action adds a new user';
     }
