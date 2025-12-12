@@ -4,9 +4,11 @@ import { DatabaseModule } from 'src/databases/database.module'; //导入数据�
 import { LoggerModule } from './logger/logger.module';
 import { UserModule } from './user/user.module';
 import { CrudModule } from './crud/crud.module';
+
+import { AuthModule } from './auth/auth.module';
 @Module({
-  imports: [AppConfigModule, DatabaseModule, LoggerModule, UserModule, CrudModule],
-  controllers: [],
-  providers: [],
+    imports: [AppConfigModule, DatabaseModule, LoggerModule, UserModule, CrudModule, AuthModule],
+    controllers: [],
+    providers: [],
 })
-export class AppModule {}
+export class AppModule { }

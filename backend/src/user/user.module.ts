@@ -4,8 +4,9 @@ import { UserController } from './user.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from '../entities/user.entity'
 @Module({
-  imports: [TypeOrmModule.forFeature([User])], // 注册 User 实体
-  controllers: [UserController],
-  providers: [UserService],
+    imports: [TypeOrmModule.forFeature([User])], // 注册 User 实体
+    controllers: [UserController],
+    providers: [UserService],
+    exports: [UserService]
 })
-export class UserModule {}
+export class UserModule { }

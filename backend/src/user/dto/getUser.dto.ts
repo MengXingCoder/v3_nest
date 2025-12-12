@@ -2,6 +2,7 @@ export interface getUserDto {
     page: number,
     limit?: number,
     username: string,
+    password: string,
     role: string,
     gender: number
 }

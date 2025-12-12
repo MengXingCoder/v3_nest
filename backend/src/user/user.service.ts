@@ -1,6 +1,6 @@
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable, Inject, BadRequestException } from '@nestjs/common';
 import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
 import { Logger } from 'winston';
 import { Repository } from 'typeorm';
@@ -63,8 +63,29 @@ export class UserService {
         return res
     }
 
-    create(createUserDto: CreateUserDto) {
-        return 'This action adds a new user';
+    async create(createUserDto: CreateUserDto) {
+        const { username, password } = createUserDto;
+
+        // 检查用户名是否已存在
+        const existingUser = await this.userRepository.findOne({ where: { username } });
+        if (existingUser) {
+            throw new BadRequestException('Username already exists');
+        }
+
+
+
+        // 保存用户
+        const newUser = this.userRepository.create({
+            username,
+            password
+        });
+
+        const savedUser = await this.userRepository.save(newUser);
+
+        // 返回时剔除 password
+        // const { password: _, ...result } = savedUser;
+        return savedUser;
+
     }
 
     findAll() {
