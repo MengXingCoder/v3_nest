@@ -1,39 +1,41 @@
 import {
-  Column,
-  Entity,
-  JoinTable,
-  ManyToMany,
-  OneToMany,
-  OneToOne,
-  PrimaryGeneratedColumn,
+    Column,
+    Entity,
+    JoinTable,
+    ManyToMany,
+    OneToMany,
+    OneToOne,
+    PrimaryGeneratedColumn,
 } from "typeorm";
 import { Profile } from "./profile.entity";
 import { Logs } from "./logs.entity";
 import { Roles } from "./roles.entity";
+import { Exclude } from "class-transformer";
 
 @Entity("user", { schema: "testdb" })
 export class User {
-  @PrimaryGeneratedColumn({ type: "int", name: "id" })
-  id: number;
+    @PrimaryGeneratedColumn({ type: "int", name: "id" })
+    id: number;
 
-  @Column("varchar", { name: "username", length: 255 })
-  username: string;
+    @Column("varchar", { name: "username", length: 255 })
+    username: string;
 
-  @Column("varchar", { name: "password", length: 255 })
-  password: string;
+    @Column("varchar", { name: "password", length: 255 })
+    @Exclude()
+    password: string;
 
-  @OneToOne(() => Profile, (profile) => profile.user)
-  profile: Profile;
+    @OneToOne(() => Profile, (profile) => profile.user)
+    profile: Profile;
 
-  @OneToMany(() => Logs, (logs) => logs.user)
-  logs: Logs[];
+    @OneToMany(() => Logs, (logs) => logs.user)
+    logs: Logs[];
 
-  @ManyToMany(() => Roles, (roles) => roles.users)
-  @JoinTable({
-    name: "users_roles",
-    joinColumns: [{ name: "userId", referencedColumnName: "id" }],
-    inverseJoinColumns: [{ name: "rolesId", referencedColumnName: "id" }],
-    schema: "testdb",
-  })
-  roles: Roles[];
+    @ManyToMany(() => Roles, (roles) => roles.users)
+    @JoinTable({
+        name: "users_roles",
+        joinColumns: [{ name: "userId", referencedColumnName: "id" }],
+        inverseJoinColumns: [{ name: "rolesId", referencedColumnName: "id" }],
+        schema: "testdb",
+    })
+    roles: Roles[];
 }

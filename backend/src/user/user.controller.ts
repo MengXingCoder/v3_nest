@@ -6,7 +6,8 @@ import {
     Patch,
     Param,
     Delete, Query,
-    UseGuards
+    UseGuards,
+    UseInterceptors
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -15,6 +16,7 @@ import { type getUserDto } from './dto/getUser.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { AdminGuard } from 'src/guards/admin.guard';
 import { JwtGuard } from 'src/guards/jwt.guard';
+import { SerializeInterceptor } from 'src/interceptor/serialize/serialize.interceptor';
 
 @Controller('user')
 export class UserController {
@@ -34,6 +36,7 @@ export class UserController {
         return res
     }
     @Post('create')
+    @UseInterceptors(SerializeInterceptor)
     create(@Body() CreateUserDto: CreateUserDto) {
         return this.userService.create(CreateUserDto);
     }
