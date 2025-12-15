@@ -13,7 +13,7 @@ export class UserService {
         @InjectRepository(User) private userRepository: Repository<User>,
     ) { }
     async findUser(query) {
-        const { limit, page, username, password, role, gender } = query
+        const { limit, page, username, password, roleId, gender } = query
         const take = limit || 10
         const res = await this.userRepository.find({
             //输出结果为下面的
@@ -38,6 +38,7 @@ export class UserService {
                     gender: true  //查profile表的用户性别
                 },
                 roles: {
+                    id: roleId,
                     name: true //查该用户的权限名称
                 }
             },
@@ -55,13 +56,14 @@ export class UserService {
                 },
                 //roles 表存的是id，但是传入的参数名是role 所以要进行对应
                 roles: {
-                    id: role
+                    id: roleId
                 }
             },
             take,
             skip: ((page || 1) - 1) * take
         })
         const result = res.map(item => JSON.parse(JSON.stringify(item)));
+        console.log('查询用户结果 userservices', result)
         return result
     }
 

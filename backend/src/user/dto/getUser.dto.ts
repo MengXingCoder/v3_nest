@@ -3,7 +3,7 @@ export interface getUserDto {
     limit?: number,
     username: string,
     password: string,
-    role: string,
+    roleId: string,
     gender: number
 }
 
