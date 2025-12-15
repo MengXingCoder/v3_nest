@@ -6,6 +6,7 @@ import { Logger } from 'winston';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
+import { hashPassword } from 'src/utils/hashAndVerification'
 @Injectable()
 export class UserService {
     constructor(
@@ -78,11 +79,13 @@ export class UserService {
 
 
 
-        // 保存用户
+        // //创建用户时 对用户密码进行加密
         const newUser = this.userRepository.create({
             username,
-            password
+            password: await hashPassword(createUserDto.password)
         });
+
+
 
         const savedUser = await this.userRepository.save(newUser);
 
