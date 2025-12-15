@@ -24,7 +24,7 @@ import { User, Profile, Logs, Roles, Test } from 'src/entities/'; // 导入实�
                 database: configService.get<string>(ConfigEnum.DB_DATABASE),
                 synchronize: configService.get<boolean>(ConfigEnum.DB_SYNC),
                 entities: [User, Profile, Logs, Roles, Test],
-                logging: process.env.NODE_ENV === 'development',
+                // logging: process.env.NODE_ENV === 'development',
             }),
         }),
     ],

@@ -5,17 +5,21 @@ import {
     Body,
     Patch,
     Param,
-    Delete, Query
+    Delete, Query,
+    UseGuards
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { type getUserDto } from './dto/getUser.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('user')
 export class UserController {
     constructor(private readonly userService: UserService) { }
+
     @Get()
+    @UseGuards(AuthGuard('jwt'))
     async getUsers(@Query() getUserDto: getUserDto) {
         const res = await this.userService.findUser(getUserDto);
         console.log('res', res);

@@ -13,7 +13,7 @@ export class UserService {
         @InjectRepository(User) private userRepository: Repository<User>,
     ) { }
     async findUser(query) {
-        const { limit, page, username, role, gender } = query
+        const { limit, page, username, password, role, gender } = query
         const take = limit || 10
         const res = await this.userRepository.find({
             //输出结果为下面的
@@ -33,6 +33,7 @@ export class UserService {
             select: {
                 id: true,//这个id是多个表 join时所需要的id字段
                 username: true, //查user表的用户名
+                password: true,
                 profile: {
                     gender: true  //查profile表的用户性别
                 },
@@ -60,7 +61,8 @@ export class UserService {
             take,
             skip: ((page || 1) - 1) * take
         })
-        return res
+        const result = res.map(item => JSON.parse(JSON.stringify(item)));
+        return result
     }
 
     async create(createUserDto: CreateUserDto) {
