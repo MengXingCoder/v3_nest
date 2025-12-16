@@ -6,8 +6,9 @@ import { UserModule } from './user/user.module';
 import { CrudModule } from './crud/crud.module';
 
 import { AuthModule } from './auth/auth.module';
+import { RolesModule } from './roles/roles.module';
 @Module({
-    imports: [AppConfigModule, DatabaseModule, LoggerModule, UserModule, CrudModule, AuthModule],
+    imports: [AppConfigModule, DatabaseModule, LoggerModule, UserModule, CrudModule, AuthModule, RolesModule],
     controllers: [],
     providers: [],
 })
