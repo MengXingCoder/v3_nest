@@ -6,7 +6,7 @@ const validateMsg = (args: ValidationArguments): string => {
 export class loginUserDto {
     @IsString()
     @IsNotEmpty()
-    @Length(6, 20, {
+    @Length(4, 20, {
         // $value 前端传过来的要校验的值
         // $targetName 当前的类
         // $property 当前属性名
@@ -27,5 +27,9 @@ export class loginUserDto {
 
     })
     username: string
-    password: string
+
+
+    @IsNotEmpty()
+    password: string;
+
 }

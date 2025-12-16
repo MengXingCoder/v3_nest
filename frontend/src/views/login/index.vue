@@ -43,11 +43,12 @@
 import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { ElMessage } from 'element-plus';
-import axios from 'axios';
-
+import { useUserStore } from '@/stores/user';
+import { login } from '@/utils/http'
+import { type LoginToken} from '@/utils/http'
 const router = useRouter();
 const formRef = ref();
-
+const userStoreToken = useUserStore()
 const form = reactive({
   username: '',
   password: '',
@@ -62,10 +63,20 @@ const handleSubmit = async () => {
   await formRef.value?.validate(async (valid: boolean) => {
     if (valid) {
       try {
-        const res = await axios.post('/api/login', form);
-        const token = res.data.token || res.data.access_token;
-
-        localStorage.setItem('token', token);
+        const params={
+            username:form.username,
+            password:form.password
+        }
+          const  res = await login(params)  as unknown as LoginToken;
+        // const token = res.data.token || res.data.access_token;
+        console.log('Full response:', res);
+       const token = res.access_token 
+          if (token) { 
+              userStoreToken.$patch({
+                token:token
+              })
+          }
+        // localStorage.setItem('token', token);
         ElMessage.success('登录成功！');
 
         // 跳转首页

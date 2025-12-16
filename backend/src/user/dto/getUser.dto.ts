@@ -1,10 +1,10 @@
 export interface getUserDto {
-    page: number,
+    page?: number,
     limit?: number,
-    username: string,
-    password: string,
-    roleId: string,
-    gender: number
+    username?: string,
+    password?: string,
+    roleId?: string,
+    gender?: number
 }
 
 // // getUser.dto.ts

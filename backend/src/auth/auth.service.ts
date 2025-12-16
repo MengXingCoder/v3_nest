@@ -8,12 +8,14 @@ export class AuthService {
     constructor(private userService: UserService, private jwtService: JwtService) { }
     async login(username: string, password: string) {
 
-
+        console.log('auth-----', password)
         const user = await this.userService.findUser({ username, password })
         if (!user) {
             throw new ForbiddenException('用户名不存在，请注册')
         }
+
         const verifyResult = verificationPassword(password, user[0].password)
+        console.log('登录信息', user, { username, password }, verifyResult)
         if (!verifyResult) {
             throw new ForbiddenException('用户名或者密码错误')
 

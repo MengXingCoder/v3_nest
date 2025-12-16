@@ -21,7 +21,7 @@ export class User {
     username: string;
 
     @Column("varchar", { name: "password", length: 255 })
-    @Exclude()
+
     password: string;
 
     @OneToOne(() => Profile, (profile) => profile.user)

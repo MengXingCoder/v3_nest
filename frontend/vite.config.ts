@@ -33,7 +33,7 @@ export default defineConfig({
     // 未来对接 NestJS 时取消注释
     proxy: {
       '/api': {
-        target: 'http://localhost:3000',
+        target: 'http://127.0.0.1:3000',
         changeOrigin: true,
       },
     },

@@ -7,14 +7,16 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { hashPassword } from 'src/utils/hashAndVerification'
+import { type getUserDto } from './dto/getUser.dto';
 @Injectable()
 export class UserService {
     constructor(
         @Inject(WINSTON_MODULE_PROVIDER) private readonly logger: Logger,
         @InjectRepository(User) private userRepository: Repository<User>,
     ) { }
-    async findUser(query) {
-        const { limit, page, username, password, roleId, gender } = query
+    async findUser(getUserDto: getUserDto) {
+        console.log('userservice-----s', getUserDto)
+        const { limit, page, username, password, roleId, gender } = getUserDto
         const take = limit || 10
         const res = await this.userRepository.find({
             //输出结果为下面的
@@ -39,9 +41,10 @@ export class UserService {
                     gender: true  //查profile表的用户性别
                 },
                 roles: {
-                    id: roleId,
-                    name: true //查该用户的权限名称
+                    id: true,    
+                    name: true  
                 }
+
             },
             //user表关联那些表 (关联了roles和profile表)
             relations: {

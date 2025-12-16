@@ -31,6 +31,7 @@ export class UserController {
     //如果使用UseGuards 传递多个守卫，那么执行顺序就是从前往后执行，如果前一个守卫没有执行通过，那么后面的所有守卫都不会执行
     //等价于上面 下面这个把守卫合起来了  @UseGuards(AuthGuard('jwt'),AdminGuard)   
     async getUsers(@Query() getUserDto: getUserDto) {
+        console.log('usercontroller', getUserDto);
         const res = await this.userService.findUser(getUserDto);
         // console.log('res', res);
         return res
