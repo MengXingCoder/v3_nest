@@ -97,13 +97,18 @@ export class UserService {
         return savedUser;
 
     }
-
+    async find(username: string) {
+        return await this.userRepository.findOne({
+            where: { username },
+            relations: ['roles']
+        })
+    }
     findAll() {
         return `This action returns all user`;
     }
 
-    findOne(id: number) {
-        return `This action returns a #${id} user`;
+    async findOne(id: number) {
+        return await this.userRepository.findOne({ where: { id } })
     }
 
     update(id: number, updateUserDto: UpdateUserDto) {

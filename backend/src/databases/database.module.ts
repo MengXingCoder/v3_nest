@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ConfigEnum } from 'src/enum/config.enum';
+import { ConfigEnum } from 'src/enums/config.enum';
 import { AppConfigModule } from 'src/config/config.module';  //导入配置模块
 
 

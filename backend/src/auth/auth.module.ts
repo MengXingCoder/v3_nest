@@ -6,7 +6,7 @@ import { PassportModule } from '@nestjs/passport'
 import { JwtModule } from '@nestjs/jwt'
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { config } from 'dotenv';
-import { ConfigEnum } from 'src/enum/config.enum';
+import { ConfigEnum } from 'src/enums/config.enum';
 import { JwtStrategy } from './jwt.strategy';
 @Module({
     imports: [UserModule, PassportModule, JwtModule.registerAsync({
