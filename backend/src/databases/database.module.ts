@@ -7,7 +7,7 @@ import { AppConfigModule } from 'src/config/config.module';  //导入配置模�
 
 // 导入所有实体
 import { User, Profile, Logs, Roles, Test } from 'src/entities/'; // 导入实体
-
+import { Menus } from 'src/menus/menus.entity';
 @Module({
     imports: [
         AppConfigModule,
@@ -23,7 +23,7 @@ import { User, Profile, Logs, Roles, Test } from 'src/entities/'; // 导入实�
                 password: configService.get<string>(ConfigEnum.DB_PASSWORD),
                 database: configService.get<string>(ConfigEnum.DB_DATABASE),
                 synchronize: configService.get<boolean>(ConfigEnum.DB_SYNC),
-                entities: [User, Profile, Logs, Roles, Test],
+                entities: [User, Profile, Logs, Roles, Test, Menus],
                 // logging: process.env.NODE_ENV === 'development',
             }),
         }),

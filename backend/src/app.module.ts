@@ -7,8 +7,9 @@ import { CrudModule } from './crud/crud.module';
 
 import { AuthModule } from './auth/auth.module';
 import { RolesModule } from './roles/roles.module';
+import { MenusModule } from './menus/menus.module';
 @Module({
-    imports: [AppConfigModule, DatabaseModule, LoggerModule, UserModule, CrudModule, AuthModule, RolesModule],
+    imports: [AppConfigModule, DatabaseModule, LoggerModule, UserModule, CrudModule, AuthModule, RolesModule, MenusModule],
     controllers: [],
     providers: [],
 })

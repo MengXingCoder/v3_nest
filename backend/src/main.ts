@@ -5,6 +5,7 @@ import { AppModule } from './app.module';
 import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
 import { ValidationPipe } from '@nestjs/common';
 import { ResponseSerializerInterceptor } from './interceptor/serialize/response.serializer.interceptor';
+import { DataSource } from 'typeorm';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
@@ -21,6 +22,8 @@ async function bootstrap() {
     app.useGlobalPipes(new ValidationPipe({
         whitelist: true,// 去掉类上不存在的字段 即验证器会去掉没有验证装饰器的属性
     }))
+    const dataSource = app.get(DataSource);
+console.log('Loaded entities:', dataSource.entityMetadatas.map(m => m.name));
     app.setGlobalPrefix('api')
     await app.listen(3000, '0.0.0.0');
 }
