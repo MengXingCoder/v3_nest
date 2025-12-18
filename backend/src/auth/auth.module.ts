@@ -8,6 +8,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { config } from 'dotenv';
 import { ConfigEnum } from 'src/enums/config.enum';
 import { JwtStrategy } from './jwt.strategy';
+import { CaslAbilityService } from './casl-ability.service';
 @Module({
     imports: [UserModule, PassportModule, JwtModule.registerAsync({
         imports: [ConfigModule],
@@ -23,6 +24,6 @@ import { JwtStrategy } from './jwt.strategy';
         inject: [ConfigService]
     })],
     controllers: [AuthController],
-    providers: [AuthService, JwtStrategy]
+    providers: [AuthService, JwtStrategy,CaslAbilityService]
 })
 export class AuthModule { }
